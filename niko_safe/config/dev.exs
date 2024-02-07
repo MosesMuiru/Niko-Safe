@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :niko_safe, NikoSafe.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "welcome2",
   hostname: "localhost",
   database: "niko_safe_dev",
   stacktrace: true,
