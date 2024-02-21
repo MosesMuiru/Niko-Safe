@@ -11,4 +11,10 @@ defmodule NikoSafe.Emergency.EmergencySchema do
     belongs_to :user, UserSchema
   end
 
+  def changeset(emergency, params // {}) do
+    emergency
+    |> cast([:health, :tragendy)
+    
+  
+  end
 end

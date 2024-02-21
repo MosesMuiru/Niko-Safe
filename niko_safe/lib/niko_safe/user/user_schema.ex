@@ -6,10 +6,12 @@ defmodule NikoSafe.User.UserSchema do
 
   schema "user" do
     field :name, :string
-
-
-    # relationship with the
+    field :phone_number, :string
+# relationship with the
    has_one :garget, NikoSafe.Garget.GargetSchema
+ 
    has_one :emergency, NikoSage.Emergency.EmergencySchema
+
+   many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam, join_through: NikoSafe.PoliceTeam.UserRescueTeam 
   end
 end
