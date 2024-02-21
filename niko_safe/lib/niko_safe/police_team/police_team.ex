@@ -12,4 +12,11 @@ defmodule NikoSafe.PoliceTeam.PoliceTeam do
     #
     has_many :police_team, NikoSafe.PoliceTeam.PoliceTeam
   end
+
+  def changeset(police_team, params \\ %{}) do
+    police_team
+    |> cast(params, [:phone_number, :station_name])
+    |> validate_required([:phone_number, :station_name])
+    |> validate_length(:phone_number, max: 13)
+  end
 end

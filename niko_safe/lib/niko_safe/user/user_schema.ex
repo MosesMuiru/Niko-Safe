@@ -3,6 +3,8 @@ defmodule NikoSafe.User.UserSchema do
   # garget -> this is used to create a relationship between the user and the garget
   alias NikoSafe.Garget.GargetSchema
   use Ecto.Schema
+  import Ecto.Changeset
+
 
   schema "user" do
     field :name, :string
@@ -14,4 +16,13 @@ defmodule NikoSafe.User.UserSchema do
 
    timestamps() 
   end
+  
+  def changeset(user, params \\ %{}) do
+    user
+    |> cast(params, [:name, :phone_number])
+    |> validate_required([:name, :phone_number])
+    |> validate_length(:phone_number,min: 10, max: 12)
+
+  end
+  
 end

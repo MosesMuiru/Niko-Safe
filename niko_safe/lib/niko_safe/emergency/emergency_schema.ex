@@ -15,5 +15,6 @@ defmodule NikoSafe.Emergency.EmergencySchema do
   def changeset(emergency, params \\ {}) do
     emergency
     |> cast(params, [:health, :tragendy])
+    
   end
 end
