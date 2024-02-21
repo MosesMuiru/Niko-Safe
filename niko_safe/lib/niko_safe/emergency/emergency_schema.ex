@@ -1,6 +1,6 @@
 defmodule NikoSafe.Emergency.EmergencySchema do
   use Ecto.Schema
-  use Ecto.Changeset
+  import Ecto.Changeset
 
   alias NikoSafe.User.UserSchema
 
@@ -8,13 +8,12 @@ defmodule NikoSafe.Emergency.EmergencySchema do
     field :health, :string
     field :tragedy, :string
 
-    belongs_to :user, UserSchema
+    timestamps()
+    belongs_to :user, UserSchema, foreign_key: :user_id
   end
 
-  def changeset(emergency, params // {}) do
+  def changeset(emergency, params \\ {}) do
     emergency
-    |> cast([:health, :tragendy)
-    
-  
+    |> cast(params, [:health, :tragendy])
   end
 end

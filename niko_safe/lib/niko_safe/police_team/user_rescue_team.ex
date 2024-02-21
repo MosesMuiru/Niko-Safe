@@ -5,8 +5,9 @@ defmodule NikoSafe.PoliceTeam.UserRescueTeam do
   alias NikoSafe.User.UserSchema
 
   schema "user_rescue_team" do
-  belongs_to :police_team, PoliceTeam 
-  belongs_to :user, UserSchema
-  end
+    belongs_to :police_team, PoliceTeam
+    belongs_to :user, UserSchema
 
+    timestamps()
+  end
 end
