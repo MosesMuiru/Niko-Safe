@@ -15,8 +15,7 @@ defmodule NikoSafe.Garget.GargetSchema do
   def changeset(garget, params \\ %{}) do
     garget
     |> cast(params, [:name, :longitude, :latitude])
-    |> validate_required([:name, :longitide, :latitude])
+    |> validate_required([:name, :longitude, :latitude])
     |> unique_constraint([:name])
-  
   end
 end

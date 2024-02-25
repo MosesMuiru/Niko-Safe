@@ -5,16 +5,15 @@ defmodule NikoSafe.Emergency.EmergencySchema do
   alias NikoSafe.User.UserSchema
 
   schema "emergency" do
-    field :health, :string
-    field :tragedy, :string
+    field :distress_message, :string
 
-    timestamps()
     belongs_to :user, UserSchema, foreign_key: :user_id
+    timestamps()
   end
 
-  def changeset(emergency, params \\ {}) do
-    emergency
-    |> cast(params, [:health, :tragendy])
-    
-  end
+  # def changeset(emergency, params \\ {}) do
+  #  emergency
+  # |> cast(params, [:health, :tragedy])
+  #    |> validate_required([:health, :tragedy]) 
+  # end
 end

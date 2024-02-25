@@ -3,8 +3,7 @@ defmodule NikoSafe.Repo.Migrations.CreateEmergency do
 
   def change do
     create table("emergency") do
-      add :health, :string
-      add :tragedy, :string
+      add :distress_message, :string, default: "i need help"
 
       timestamps()
     end

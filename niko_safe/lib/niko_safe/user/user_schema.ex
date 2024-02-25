@@ -5,24 +5,23 @@ defmodule NikoSafe.User.UserSchema do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "user" do
     field :name, :string
     field :phone_number, :string
     # relationship with the garget
-    has_many :gargets, GargetSchema, foreign_key: :user_id
+    has_many :garget, GargetSchema, foreign_key: :user_id
     has_many :emergency, NikoSafe.Emergency.EmergencySchema, foreign_key: :emergency_id
-    many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam, join_through: NikoSafe.PoliceTeam.UserRescueTeam
 
-   timestamps() 
+    many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam,
+      join_through: NikoSafe.PoliceTeam.UserRescueTeam
+
+    timestamps()
   end
-  
+
   def changeset(user, params \\ %{}) do
     user
     |> cast(params, [:name, :phone_number])
     |> validate_required([:name, :phone_number])
-    |> validate_length(:phone_number,min: 10, max: 12)
-
+    |> validate_length(:phone_number, min: 10, max: 12)
   end
-  
 end

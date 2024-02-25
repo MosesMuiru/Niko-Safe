@@ -8,7 +8,5 @@ defmodule NikoSafe.Repo.Migrations.CreatePoliceTeam do
 
       timestamps()
     end
-
-
   end
 end

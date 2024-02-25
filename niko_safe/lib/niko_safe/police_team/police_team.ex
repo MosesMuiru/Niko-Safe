@@ -1,6 +1,7 @@
 defmodule NikoSafe.PoliceTeam.PoliceTeam do
   use Ecto.Schema
   import Ecto.Changeset
+  alias NikoSafe.User.UserSchema
 
   schema "police_team" do
     field :phone_number, :string
@@ -10,7 +11,8 @@ defmodule NikoSafe.PoliceTeam.PoliceTeam do
     # the relationship
     # one police Team can have many user but one user can have on police team
     #
-    has_many :police_team, NikoSafe.PoliceTeam.PoliceTeam
+    # has_many :user, UserSchema
+    many_to_many :user, UserSchema, join_through: NikoSafe.PoliceTeam.UserRescueTeam
   end
 
   def changeset(police_team, params \\ %{}) do
