@@ -4,6 +4,7 @@ defmodule NikoSafe.User.UserSchema do
   alias NikoSafe.Garget.GargetSchema
   use Ecto.Schema
   import Ecto.Changeset
+  alias NikoSafe.Rescue.RescueTeam
 
   schema "user" do
     field :name, :string
@@ -12,8 +13,9 @@ defmodule NikoSafe.User.UserSchema do
     has_many :garget, GargetSchema, foreign_key: :user_id
     has_many :emergency, NikoSafe.Emergency.EmergencySchema, foreign_key: :emergency_id
 
-    many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam,
-      join_through: NikoSafe.PoliceTeam.UserRescueTeam
+    #many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam,
+      #join_through: NikoSafe.PoliceTeam.UserRescueTeam
+    has_many :rescue_team, RescueTeam, foreign_key: :user_id 
 
     timestamps()
   end
