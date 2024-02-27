@@ -17,6 +17,5 @@ defmodule NikoSafe.PoliceTeam.Impl do
 
   # this is able to get the police either by id or either by police name
   #
-
   
 end
