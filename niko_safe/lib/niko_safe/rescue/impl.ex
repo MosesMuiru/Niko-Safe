@@ -4,7 +4,7 @@ defmodule NikoSafe.Rescue.Impl do
   alias NikoSafe.Rescue.RescueTeam
 
   @doc """
-    get all contact list in the db
+    get all contact list in the database
 
     get a contact list based on the id or name
 
@@ -44,18 +44,17 @@ defmodule NikoSafe.Rescue.Impl do
 
   
   # this will be used to update the user ---> this is including even the changesj
-  def update_rescue_team(%RescueTeam{} = rescue_team, attrs \\ %{}) do
-    rescue_team
-    |> RescueTeam.changeset(attrs)
+  def update_rescue_team(id, attrs) do
+
+    RescueTeam
+    |> Repo.get!(id)
+    |> change(attrs)
     |> Repo.update()
-  end
-
-  def change_rescue_team(%RescueTeam{} = rescue_team, attrs \\ %{}) do
-
-    rescue_team
-    |> RescueTeam.changeset(attrs)
+    
 
   end
+  
+
 
   def delete_rescue_team(%RescueTeam{} = rescue_team, attrs \\ %{}) do
 
