@@ -2,6 +2,7 @@ defmodule NikoSafe.Garget.Impl do
   alias NikoSafe.Repo
   alias NikoSafe.Garget.GargetSchema
   import Ecto.Query
+  alias Ecto.Changeset
 
   # get all gargets
   def get_all do
@@ -35,6 +36,12 @@ defmodule NikoSafe.Garget.Impl do
     |> Repo.update()
 
   end
-
+  
+  def update_garget(garget_id, attrs) do
+    GargetSchema
+    |> Repo.get!(garget_id)
+    |> Changeset.change(attrs)
+    |> Repo.update()
+  end
  
 end
