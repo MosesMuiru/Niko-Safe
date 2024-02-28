@@ -18,6 +18,7 @@ defmodule NikoSafeWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    post "/user", UserController, :create
   end
 
   # Other scopes may use custom stacks.

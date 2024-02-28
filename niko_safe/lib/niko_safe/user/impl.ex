@@ -37,7 +37,30 @@ defmodule NikoSafe.User.Impl do
     search for that user
     enter the change you want
     then update the db
+    |> Repo.update()
+    
+    example the correct way of using this
+  iex(32)> Impl.update_user(2,name: "waa")
+[debug] QUERY OK source="user" db=0.6ms queue=0.1ms idle=1557.3ms
+SELECT u0."id", u0."name", u0."phone_number", u0."inserted_at", u0."updated_at" FROM "user" AS u0 WHERE (u0."id" = $1) [2]
+↳ NikoSafe.User.Impl.update_user/2, at: lib/niko_safe/user/impl.ex:43
+[debug] QUERY OK source="user" db=34.9ms queue=1.3ms idle=1558.4ms
+UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024-02-27 18:44:27], 2]
+↳ anonymous fn/4 in :elixir.eval_external_handler/1, at: src/elixir.erl:309
+{:ok,
+ %NikoSafe.User.UserSchema{
+   __meta__: #Ecto.Schema.Metadata<:loaded, "user">,
+   id: 2,
+   name: "waa",
+   phone_number: "2024240199",
+   garget: #Ecto.Association.NotLoaded<association :garget is not loaded>,
+   emergency: #Ecto.Association.NotLoaded<association :emergency is not loaded>,
+   rescue_team: #Ecto.Association.NotLoaded<association :rescue_team is not loaded>,
+   inserted_at: ~N[2024-02-27 18:29:54],
+   updated_at: ~N[2024-02-27 18:44:27]
+ }}
 
+    
   """
   def update_user(user_id, attrs) do
     Repo.get!(UserSchema, user_id)
