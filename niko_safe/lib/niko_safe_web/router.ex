@@ -8,6 +8,7 @@ defmodule NikoSafeWeb.Router do
     plug :put_root_layout, html: {NikoSafeWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :CSRFProtection
   end
 
   pipeline :api do

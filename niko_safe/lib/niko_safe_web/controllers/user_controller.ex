@@ -5,8 +5,8 @@ defmodule NikoSafeWeb.UserController do
   def create(conn, %{"name" => name}) do
     IO.inspect(name)
     conn
-    |> put_status(200)
-    |> render("json", {name: name})
+    |> put_status(:created)
+    |> json( name: name)
     
   end
 
