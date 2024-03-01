@@ -52,3 +52,11 @@ number must be verified and confirmed by the user
 then it will be indicated as verified
 
 this will happen with the use of an otp
+
+# issue
+Because "the lock" specifies tesla 1.8.0 and every version of at_ex depends on tesla ~> 1.2.1, the lock is incompatible with at_ex.
+And because your app depends on the lock, no version of at_ex is allowed.
+So, because your app depends on at_ex ~> 0.20.22, version solving failed.
+** (Mix) Hex dependency resolution failed
+# solution
+to change the dependacies that were being used by at
