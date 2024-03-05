@@ -19,7 +19,7 @@ defmodule NikoSafeWeb.UssdController do
     #%{"text" => text} = params
     case text do
       "" ->
-        {_, response} = USSD.build_response([{1,"first ussd"}])
+        {_, response} = USSD.build_response([{1,"Enter Your Garget Code"}])
         conn
         |> put_status(:created)
         |> send_resp(200, response)

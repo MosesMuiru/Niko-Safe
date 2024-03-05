@@ -6,6 +6,7 @@ defmodule NikoSafe.User.UserSchema do
   import Ecto.Changeset
   alias NikoSafe.Rescue.RescueTeam
 
+  @optional_fields [:id, :inserted_at, :updated_at, :garget_id, :emergency_id, :rescue_team]
   schema "user" do
     field :name, :string
     field :phone_number, :string
@@ -20,10 +21,16 @@ defmodule NikoSafe.User.UserSchema do
     timestamps()
   end
 
+  defp all_fields do
+    __MODULE__.__schema__(:fields)
+
+  end
+
+
   def changeset(user, params \\ %{}) do
     user
-    |> cast(params, [:name, :phone_number])
-    |> validate_required([:name, :phone_number])
+    |> cast(params, all_fields() -- @optional_fields)
+    |> validate_required(all_fields() -- @optional_fields)
     |> validate_length(:phone_number, min: 10, max: 12)
   end
 end
