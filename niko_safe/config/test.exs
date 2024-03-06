@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :niko_safe, NikoSafe.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "welcome2",
   hostname: "localhost",
   database: "niko_safe_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
