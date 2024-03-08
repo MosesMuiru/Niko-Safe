@@ -13,7 +13,7 @@ defmodule NikoSafeWeb.UssdController do
   phoneNumber
   text
   """
-
+  @doc """
   def create(conn, params) do
     %{"sessionId" => _sessionId, "serviceCode" => _serviceCode, "phoneNumber" => _phoneNumber, "text" => text} =  params
     #%{"text" => text} = params
@@ -56,15 +56,50 @@ defmodule NikoSafeWeb.UssdController do
     end 
 
   end
+"""
+  def create(conn, params) do
+    
+    %{"sessionId" => _sessionId, "serviceCode" => _serviceCode, "phoneNumber" => _phoneNumber, "text" => text} =  params
+    process_input(conn, text)
 
-  defp process_input(text) do
+
+  end
+
+defp process_input(conn, <<head, rest::binary>> = text) when head == ?1 do
+    
+    case count(text) do
+
+      0 ->
+        {_, response} = USSD.build_response("Enter Your name", :cont)
+        conn
+        |> put_status(:created)
+        |> send_resp(200, response)
+
+      1 -> 
+        {_, response} = USSD.build_response("Welcome to Niko Safe", [{1,"Register"}, {2, "Login"}, {0, "exit"}])
+        IO.puts("the reponse")
+        IO.inspect(response)
+        conn
+        |> put_status(:created)
+        |> send_resp(200, response)
+
+      _-> 
+        {_, response} = USSD.build_response("your have entered an invalid input", :end)
+        conn
+        |> put_status(404) 
+        |> send_resp(404, response)
+  
+    end
+
+
+  end
+
+
+  defp process_input(conn, text) do
 
     case text do
       "" ->
         {_, response} = USSD.build_response("Welcome to Niko Safe", [{1,"Register"}, {2, "Login"}, {0, "exit"}])
-
-      #  options(text)
-      IO.puts("this is the response")
       IO.inspect(response)
         conn
         |> put_status(:created)
@@ -72,16 +107,6 @@ defmodule NikoSafeWeb.UssdController do
 
   end
 end
-
-  defp process_input(text) when String.first(text) == 1 do
-    
-    case count(text) do
-
-
-    end
-
-
-  end
 
 
   @spec count_level(String.t()) :: integer | String.t()
