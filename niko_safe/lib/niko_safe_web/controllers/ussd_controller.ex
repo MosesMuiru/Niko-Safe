@@ -72,17 +72,24 @@ defp process_input(conn, <<head, rest::binary>> = text) when head == ?1 do
       0 ->
         {_, response} = USSD.build_response("Enter Your name", :cont)
         conn
-        |> put_status(:created)
+        |> put_status(:accepted)
         |> send_resp(200, response)
 
       1 -> 
-        {_, response} = USSD.build_response("Welcome to Niko Safe", [{1,"Register"}, {2, "Login"}, {0, "exit"}])
+        {_, response} = USSD.build_response("Enter Your Garget Id")
         IO.puts("the reponse")
         IO.inspect(response)
         conn
-        |> put_status(:created)
+        |> put_status(:accepted)
         |> send_resp(200, response)
+      2 -> 
+        {_, response} = USSD.build_response("Enter Number of people you want them to respond to your Emergencies, separate them with comma \n 0712xxxx,07xxxxx34,07XXXX232")
 
+        IO.inspect(text)
+        conn
+        |> put_status(:accepted)
+        |> send_resp(202, response)
+        
       _-> 
         {_, response} = USSD.build_response("your have entered an invalid input", :end)
         conn
