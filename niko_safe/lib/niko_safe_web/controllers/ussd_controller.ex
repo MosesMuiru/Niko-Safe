@@ -91,6 +91,7 @@ defp process_input(conn, <<head, rest::binary>> = text) when head == ?1 do
         |> send_resp(202, response)
         
       _-> 
+        IO.inspect(text)
         {_, response} = USSD.build_response("your have entered an invalid input", :end)
         conn
         |> put_status(404) 
