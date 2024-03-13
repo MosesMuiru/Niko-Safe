@@ -5,7 +5,7 @@
     you should be able to insert you own team..
     if no distress signal is sent or no response is given
         follow up with a call
-        stating you geolocation
+        stating your geolocation
          
 
 
