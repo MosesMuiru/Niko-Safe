@@ -22,6 +22,9 @@ config :niko_safe, NikoSafeWeb.Endpoint,
   pubsub_server: NikoSafe.PubSub,
   live_view: [signing_salt: "YEZSXhnJ"]
 
+config :at_live,
+  api_key: System.get_env("ATLIVE")
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

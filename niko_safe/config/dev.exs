@@ -17,9 +17,6 @@ config :niko_safe, NikoSafe.Repo,
 config :at_sandbox,
   api_key: System.get_env("ATLIVE")
 
-config :at_live,
-  api_key: System.get_env("ATSANDBOX")
-
 # here am configuring africastalking api for this projects
 config :at_ex,
   api_key: System.get_env("ATSANBOX"),

@@ -1,17 +1,16 @@
 defmodule NikoSafe.Communication.Sms do
   use Tesla
   alias AtEx.Sms
+  alias NikoSafe.Gateway
 
-  plug Tesla.Middleware.BaseUrl, "https://voice.africastalking.com/call"
+  plug Tesla.Middleware.BaseUrl, "https://api.africastalking.com/version1/messaging"
 
   plug Tesla.Middleware.Headers, [
     {"accept", "application/json"},
     {"Content-Type", "application/x-www-form-urlencoded"},
-    {"apikey", "953d6ce37d0b7e7ba2cc0974757eec0a93fa44fbf6c18b0807fe6c0f2db6a8e9"}
+    {"apikey", System.get_env("ATLIVE")}
   ]
 
-  # {"apikey", "de2fcba6e9fd0a7b683e8600b80f8c6070f834bdac0bf22560d00a12db8aa007"}]
-  # {"apikey", "aa00212ade05662d24e4d238ccb4e6f9924017a0e82e49ceeca83d86c662958d"}] 
   plug Tesla.Middleware.FormUrlencoded
 
   @moduledoc """
@@ -20,8 +19,9 @@ defmodule NikoSafe.Communication.Sms do
 
   """
   def make_call do
-    attrs = %{username: "nikosafe", from: "+254711082048", to: "+254794741095"}
-    post("", attrs)
+    attrs = %{username: "nikosafe", from: "+254711082048", to: "+254727243892"}
+
+    Gateway.post_to_at(attrs, "voice")
   end
 
   # @spec send_confirmation_sms(list(String.t())) :: any()
