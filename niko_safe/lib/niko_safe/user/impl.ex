@@ -4,7 +4,7 @@ defmodule NikoSafe.User.Impl do
   alias Ecto.Changeset
   # get all users
   #
-  @doc"""
+  @doc """
     create 
     
     read
@@ -27,11 +27,8 @@ defmodule NikoSafe.User.Impl do
   def insert_user(user) do
     %UserSchema{}
     |> UserSchema.changeset(user)
-    |> Repo.insert() 
-
-  end 
-
-
+    |> Repo.insert()
+  end
 
   @doc """
     search for that user
@@ -41,14 +38,14 @@ defmodule NikoSafe.User.Impl do
     
     example the correct way of using this
   iex(32)> Impl.update_user(2,name: "waa")
-[debug] QUERY OK source="user" db=0.6ms queue=0.1ms idle=1557.3ms
-SELECT u0."id", u0."name", u0."phone_number", u0."inserted_at", u0."updated_at" FROM "user" AS u0 WHERE (u0."id" = $1) [2]
-↳ NikoSafe.User.Impl.update_user/2, at: lib/niko_safe/user/impl.ex:43
-[debug] QUERY OK source="user" db=34.9ms queue=1.3ms idle=1558.4ms
-UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024-02-27 18:44:27], 2]
-↳ anonymous fn/4 in :elixir.eval_external_handler/1, at: src/elixir.erl:309
-{:ok,
- %NikoSafe.User.UserSchema{
+  [debug] QUERY OK source="user" db=0.6ms queue=0.1ms idle=1557.3ms
+  SELECT u0."id", u0."name", u0."phone_number", u0."inserted_at", u0."updated_at" FROM "user" AS u0 WHERE (u0."id" = $1) [2]
+  ↳ NikoSafe.User.Impl.update_user/2, at: lib/niko_safe/user/impl.ex:43
+  [debug] QUERY OK source="user" db=34.9ms queue=1.3ms idle=1558.4ms
+  UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024-02-27 18:44:27], 2]
+  ↳ anonymous fn/4 in :elixir.eval_external_handler/1, at: src/elixir.erl:309
+  {:ok,
+  %NikoSafe.User.UserSchema{
    __meta__: #Ecto.Schema.Metadata<:loaded, "user">,
    id: 2,
    name: "waa",
@@ -58,14 +55,14 @@ UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024
    rescue_team: #Ecto.Association.NotLoaded<association :rescue_team is not loaded>,
    inserted_at: ~N[2024-02-27 18:29:54],
    updated_at: ~N[2024-02-27 18:44:27]
- }}
+  }}
 
     
   """
   def update_user(user_id, attrs) do
     Repo.get!(UserSchema, user_id)
     |> Changeset.change(attrs)
-    |> Repo.update()    
+    |> Repo.update()
   end
 
   @doc """
@@ -82,12 +79,11 @@ UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024
   """
 
   def delete_user(id) do
-  # get the user with the id
-  # delete id
-  UserSchema
-  |> Repo.get(id)
-  |> Repo.delete()
-
+    # get the user with the id
+    # delete id
+    UserSchema
+    |> Repo.get(id)
+    |> Repo.delete()
   end
 
   @doc """
@@ -101,8 +97,5 @@ UPDATE "user" SET "name" = $1, "updated_at" = $2 WHERE "id" = $3 ["waa", ~N[2024
     user_schema
     |> UserSchema.changeset(attrs)
     |> Repo.update()
-    
-
   end
-
-    end
+end

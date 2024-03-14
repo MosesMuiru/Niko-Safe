@@ -7,7 +7,6 @@ defmodule NikoSafe.Repo.Migrations.CreateRescueTeam do
       add :phone_number, :string
       add :message, :string
       add :user_id, references(:user, on_delete: :delete_all)
-
     end
   end
 end

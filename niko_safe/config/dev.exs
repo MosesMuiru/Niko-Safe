@@ -3,25 +3,31 @@ import Config
 # Configure your database
 config :niko_safe, NikoSafe.Repo,
   username: "postgres",
-  password: "welcome2",
+  password: System.get_env("POSTGRES"),
   hostname: "localhost",
   database: "niko_safe_dev",
   stacktrace: true,
   port: "5432",
- # ssl: true,
-#  ssl_opts: [verify: :verify_peer, cacertfile: :public_key.cacerts_get()],
+  # ssl: true,
+  #  ssl_opts: [verify: :verify_peer, cacertfile: :public_key.cacerts_get()],
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
-  
+
+# configuration of africastlking credentialks
+config :at_sandbox,
+  api_key: System.get_env("ATLIVE")
+
+config :at_live,
+  api_key: System.get_env("ATSANDBOX")
 
 # here am configuring africastalking api for this projects
-config :at_ex, 
-  api_key: "aa00212ade05662d24e4d238ccb4e6f9924017a0e82e49ceeca83d86c662958d",
+config :at_ex,
+  api_key: System.get_env("ATSANBOX"),
   username: "sandbox",
   # When changed to "false" one will use the live endpoint url
   sandbox: true,
-
-  stk_product_name: "AtEx", #Add your specific product name.
+  # Add your specific product name.
+  stk_product_name: "AtEx",
   b2c_product_name: "AtEx",
   b2b_product_name: "AtEx",
   bank_checkout_product_name: "AtEx",

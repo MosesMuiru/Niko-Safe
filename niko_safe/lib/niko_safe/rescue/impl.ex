@@ -12,7 +12,7 @@ defmodule NikoSafe.Rescue.Impl do
 
   create
     rescue list
-  
+
   read
     all rescue list
     a person based on the 
@@ -23,9 +23,8 @@ defmodule NikoSafe.Rescue.Impl do
     
 
   """
- 
-  def get_all do
 
+  def get_all do
     Repo.all(RescueTeam)
   end
 
@@ -38,27 +37,17 @@ defmodule NikoSafe.Rescue.Impl do
     %RescueTeam{}
     |> RescueTeam.changeset(attrs)
     |> Repo.insert()
-    
-
   end
 
-  
   # this will be used to update the user ---> this is including even the changesj
   def update_rescue_team(id, attrs) do
-
     RescueTeam
     |> Repo.get!(id)
     |> change(attrs)
     |> Repo.update()
-    
-
   end
-  
-
 
   def delete_rescue_team(%RescueTeam{} = rescue_team, attrs \\ %{}) do
-
     Repo.delete(rescue_team)
   end
-
 end

@@ -15,8 +15,8 @@ defmodule NikoSafe.Garget.GargetSchema do
 
   defp all_fields do
     __MODULE__.__schema__(:fields)
-    
   end
+
   def changeset(garget, params \\ %{}) do
     garget
     |> cast(params, all_fields() -- @optional_fields)

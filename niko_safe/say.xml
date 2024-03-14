@@ -1,0 +1,4 @@
+<Response>
+    <Say voice="en-US-Standard-C" playBeep="false" >Your balance is 1234 Shillings</Say>
+</Response>
+

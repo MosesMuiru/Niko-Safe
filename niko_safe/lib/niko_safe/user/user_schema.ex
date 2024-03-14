@@ -14,18 +14,16 @@ defmodule NikoSafe.User.UserSchema do
     has_many :garget, GargetSchema, foreign_key: :user_id
     has_many :emergency, NikoSafe.Emergency.EmergencySchema, foreign_key: :emergency_id
 
-    #many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam,
-      #join_through: NikoSafe.PoliceTeam.UserRescueTeam
-    has_many :rescue_team, RescueTeam, foreign_key: :user_id 
+    # many_to_many :police_team, NikoSafe.PoliceTeam.PoliceTeam,
+    # join_through: NikoSafe.PoliceTeam.UserRescueTeam
+    has_many :rescue_team, RescueTeam, foreign_key: :user_id
 
     timestamps()
   end
 
   defp all_fields do
     __MODULE__.__schema__(:fields)
-
   end
-
 
   def changeset(user, params \\ %{}) do
     user

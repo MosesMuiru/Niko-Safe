@@ -60,8 +60,9 @@ defmodule NikoSafe.MixProject do
       {:bandit, "~> 1.2"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tesla, "~> 1.8"},
-      {:at_ex, git: "https://github.com/MosesMuiru/africastalking-elixir.git", branch: "version-fix"} 
-
+      {:sweet_xml, "~> 0.7.4"},
+      {:at_ex,
+       git: "https://github.com/MosesMuiru/africastalking-elixir.git", branch: "version-fix"}
     ]
   end
 
