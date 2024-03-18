@@ -14,8 +14,6 @@ config :niko_safe, NikoSafe.Repo,
   pool_size: 10
 
 # configuration of africastlking credentialks
-config :at_sandbox,
-  api_key: System.get_env("ATLIVE")
 
 # here am configuring africastalking api for this projects
 config :at_ex,

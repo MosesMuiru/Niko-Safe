@@ -1,4 +1,38 @@
 defmodule NikoSafe.Communication.Sms do
+  @moduledoc """
+
+  I THE SMS WILL HAPPEN
+    1. To send  a confirmation message to the user that you have 
+      choosen them to be the people who will respond your emergency
+      
+      "
+        Your Name has Choosen you to respond to emergency please respond
+
+
+    "  
+
+    2. To send you details of what you have entered as your details
+        
+        " THE FOLLOWING IS A LIST OF PEOPLE YOU HAVE CHOOSEN TO RESPONND TO YOUR EMERGENCY"
+
+          07xxxx,07xxxxxx,07xxxxx
+
+          your password is the following
+          5252
+          
+  3. To send emergency messages
+      
+    " Moses has an emergency"
+
+
+  4. To send notification to all the people you have choosen in your community that you have emergency
+    "Moses Has AN emergency" 
+
+
+  
+  """
+
+
   use Tesla
   alias AtEx.Sms
   alias NikoSafe.Gateway
@@ -18,11 +52,6 @@ defmodule NikoSafe.Communication.Sms do
 
 
   """
-  def make_call do
-    attrs = %{username: "nikosafe", from: "+254711082048", to: "+254727243892"}
-
-    Gateway.post_to_at(attrs, "voice")
-  end
 
   # @spec send_confirmation_sms(list(String.t())) :: any()
 
@@ -80,7 +109,8 @@ defmodule NikoSafe.Communication.Sms do
   def send_message(phone_number, message) do
     attr = %{username: "nikosafe", to: phone_number, message: message}
 
-    {:ok, response} = post("", attr)
+    #{:ok, response} = post("", attr)
+    {:ok, response} = Gateway.post_to_at(attr, "sms")
 
     IO.puts("this si threres")
     [head | _tail] = decode_response(response.body)
