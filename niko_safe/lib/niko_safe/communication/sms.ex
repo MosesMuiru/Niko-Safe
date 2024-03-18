@@ -73,6 +73,7 @@ defmodule NikoSafe.Communication.Sms do
   """
   @spec send_confirmation_message(String.t(), map()) :: %{}
   def send_confirmation_message(phone_number, data) do
+    
     message =
       "Hello #{data.name} details \nDevice #{data.garget_id}\n this are the phone numbers #{data.phone_number}"
 
