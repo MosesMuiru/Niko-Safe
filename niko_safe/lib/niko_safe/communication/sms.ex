@@ -113,7 +113,6 @@ defmodule NikoSafe.Communication.Sms do
     #{:ok, response} = post("", attr)
     {:ok, response} = Gateway.post_to_at(attr, "sms")
 
-    IO.puts("this si threres")
     [head | _tail] = decode_response(response.body)
     handle_error(head)
   end

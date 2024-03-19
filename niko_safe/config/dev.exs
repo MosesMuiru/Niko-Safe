@@ -17,7 +17,7 @@ config :niko_safe, NikoSafe.Repo,
 
 # here am configuring africastalking api for this projects
 config :at_ex,
-  api_key: System.get_env("ATSANBOX"),
+  api_key: System.get_env("ATSANDBOX"),
   username: "sandbox",
   # When changed to "false" one will use the live endpoint url
   sandbox: true,

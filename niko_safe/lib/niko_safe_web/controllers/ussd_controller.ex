@@ -18,6 +18,7 @@ defmodule NikoSafeWeb.UssdController do
   """
 
   def create(conn, params) do
+    IO.inspect(params)
     %{
       "sessionId" => _sessionId,
       "serviceCode" => _serviceCode,
@@ -71,7 +72,7 @@ defmodule NikoSafeWeb.UssdController do
           )
 
         # this is where the handling of error will occur
-        case message_to_you and message_to_responders do
+        case  message_to_you do
           101 ->
             {_, response} =
               USSD.build_response(" Confirmation has been sent to you and your responders")
@@ -144,7 +145,8 @@ defmodule NikoSafeWeb.UssdController do
   end
 
   @spec count(String.t()) :: integer
-  defp count(string) do
+  def count(string) do
+
     String.graphemes(string)
     |> Enum.count(&(&1 == "*"))
   end
