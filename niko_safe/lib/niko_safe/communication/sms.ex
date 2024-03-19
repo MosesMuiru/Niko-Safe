@@ -75,7 +75,7 @@ defmodule NikoSafe.Communication.Sms do
   def send_confirmation_message(phone_number, data) do
     
     message =
-      "Hello #{data.name} details \nDevice #{data.garget_id}\n this are the phone numbers #{data.phone_number}"
+      "Hello #{data.name} This are your details\nDevice #{data.garget_id}\nPhone numbers #{data.phone_number}\nGarget_id\nYour access pin"
 
     send_message(phone_number, message)
   end

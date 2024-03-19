@@ -5,12 +5,14 @@ defmodule NikoSafe.User.UserSchema do
   use Ecto.Schema
   import Ecto.Changeset
   alias NikoSafe.Rescue.RescueTeam
+  alias NikoSafe.Device.DeviceSchema
 
   @optional_fields [:id, :inserted_at, :updated_at, :garget_id, :emergency_id, :rescue_team]
   schema "user" do
     field :name, :string
     field :phone_number, :string
     # relationship with the garget
+    has_one :device, DeviceSchema
     has_many :garget, GargetSchema, foreign_key: :user_id
     has_many :emergency, NikoSafe.Emergency.EmergencySchema, foreign_key: :emergency_id
 

@@ -72,8 +72,8 @@ defmodule NikoSafeWeb.UssdController do
           )
 
         # this is where the handling of error will occur
-        case  message_to_you do
-          101 ->
+        case  message_to_you and message_to_responders do
+          true ->
             {_, response} =
               USSD.build_response(" Confirmation has been sent to you and your responders")
 
@@ -102,18 +102,27 @@ defmodule NikoSafeWeb.UssdController do
   defp process_input(conn, _phoneNumber, <<head, _rest::binary>> = text) when head == ?2 do
     case count(text) do
       0 ->
-        {_, response} = USSD.build_response("Enter garget pin", :cont)
+        {_, response} = USSD.build_response("Enter your garget id", :cont)
 
         conn
         |> put_status(:accepted)
         |> send_resp(200, response)
 
-      1 ->
+      1 -> 
+        {_, response} = USSD.build_response("This is enter your garget pin")
+      2 ->
         {_, response} = USSD.build_response("your details have been sent to your via sms", :end)
 
         conn
         |> put_status(:ok)
         |> send_resp(200, response)
+      _ -> 
+      {_, response} = USSD.build_response("Check you details")
+      
+      conn
+      |> put_status(204)
+      |> send_resp(204, response)
+
     end
   end
 
@@ -150,7 +159,7 @@ defmodule NikoSafeWeb.UssdController do
     String.graphemes(string)
     |> Enum.count(&(&1 == "*"))
   end
-
+  
   def options(text_input) do
     case text_input do
       "1" ->
