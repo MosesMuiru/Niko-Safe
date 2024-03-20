@@ -73,7 +73,7 @@ this will happen with the use of an otp
 ---
 
 ---
-# let me take you through might thought process and maybe my vision --> si jaba
+## let me take you through might thought process and maybe my vision --> si jaba
     so user enters details via ussd -- why use ussd_(mazee nilikuwa nataka challenge) basically i want to make this as offline as possible
     details entered via ussd
         1. Your name -> please a popular name that your reponders will get to know who it is automatically
@@ -96,7 +96,7 @@ to change the dependacies that were being used by at
 
 # so it is complicated to get the location of device based on ip address
     read this under 
-    wifi position
+    wifi positioning
     
     when you use ip address to determine the location you will get the location of the internet service provider
     apperntly you might be in kapsang(just a random place) then your ip location tracker reads that you are in Nairobi
