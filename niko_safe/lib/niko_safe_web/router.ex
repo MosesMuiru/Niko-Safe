@@ -30,6 +30,15 @@ defmodule NikoSafeWeb.Router do
     post "/voice", VoiceController, :create
   end
 
+  # using graphql
+  scope "/gapi" do
+    pipe_through :api
+
+    forward "/api", Absinthe.Plug, schema: NikoSafeWeb.Schema
+
+    forward "/graphql", Absinthe.Plug.GraphiQL, schema: NikoSafeWeb.Schema
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", NikoSafeWeb do
   #   pipe_through :api

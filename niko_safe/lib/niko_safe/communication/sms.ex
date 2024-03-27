@@ -29,9 +29,8 @@ defmodule NikoSafe.Communication.Sms do
     "Moses Has AN emergency" 
 
 
-  
-  """
 
+  """
 
   use Tesla
   alias AtEx.Sms
@@ -73,7 +72,6 @@ defmodule NikoSafe.Communication.Sms do
   """
   @spec send_confirmation_message(String.t(), map()) :: %{}
   def send_confirmation_message(phone_number, data) do
-    
     message =
       "Hello #{data.name} This are your details\nDevice #{data.garget_id}\nPhone numbers #{data.phone_number}\nGarget_id\nYour access pin"
 
@@ -110,7 +108,7 @@ defmodule NikoSafe.Communication.Sms do
   def send_message(phone_number, message) do
     attr = %{username: "nikosafe", to: phone_number, message: message}
 
-    #{:ok, response} = post("", attr)
+    # {:ok, response} = post("", attr)
     {:ok, response} = Gateway.post_to_at(attr, "sms")
 
     [head | _tail] = decode_response(response.body)

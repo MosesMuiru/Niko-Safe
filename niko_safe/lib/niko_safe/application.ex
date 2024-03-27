@@ -17,7 +17,8 @@ defmodule NikoSafe.Application do
       # Start a worker by calling: NikoSafe.Worker.start_link(arg)
       # {NikoSafe.Worker, arg},
       # Start to serve requests, typically the last entry
-      NikoSafeWeb.Endpoint
+      NikoSafeWeb.Endpoint,
+      {NikoSafe.CommunicationServer, name: NikoSafe.CommunicationServer}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

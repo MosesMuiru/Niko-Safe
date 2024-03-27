@@ -15,6 +15,4 @@ defmodule NikoSafe.Communication.Voice do
 
     Gateway.post_to_at(attrs, "voice")
   end
-
-
 end

@@ -8,7 +8,6 @@ defmodule NikoSafe.Communication.SmsTest do
         "serviceCode" => "*384*64244#",
         "phonenumber" => "0794741095l",
         "text" => "1"
-
       }
 
       response = simulate_http_call("POST", "api/ussd", params)

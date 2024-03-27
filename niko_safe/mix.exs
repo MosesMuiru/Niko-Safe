@@ -61,6 +61,8 @@ defmodule NikoSafe.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tesla, "~> 1.8"},
       {:sweet_xml, "~> 0.7.4"},
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"},
       {:at_ex,
        git: "https://github.com/MosesMuiru/africastalking-elixir.git", branch: "version-fix"}
     ]
