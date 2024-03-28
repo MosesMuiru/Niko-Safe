@@ -3,9 +3,9 @@ import Config
 # Configure your database
 config :niko_safe, NikoSafe.Repo,
   username: "postgres",
-  password: System.get_env("POSTGRES"),
+  password: "welcome2",
   hostname: "localhost",
-  database: "niko_safe_dev",
+  database: "niko_safe",
   stacktrace: true,
   port: "5432",
   # ssl: true,

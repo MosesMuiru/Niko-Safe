@@ -110,3 +110,30 @@ to change the dependacies that were being used by at
     uses setellite technology to determine the location 
     might be accurate but mostly it is 2D(latitude and longitude) the 3D (you add attidude)
     
+## things to implement
+help 
+    a place where i will ask for help
+    this will provide step by step guide on how to use this system
+
+some analysis
+    this will contain a page where all reported matters have been reported
+    
+
+how to implement the emergency system
+    create a trigger function containing the following
+        voice trigger
+        sms dispatch
+    this should either happen simultenously
+## authenticatin
+    when a user has login 
+    a confirmation message is sent to his phone
+    should contain the following
+        1. your name    
+        2. a unique moses password
+        this is for login
+
+    when registering, to view you details
+        You enter your garget id
+        enter the unique code sent via sms
+
+

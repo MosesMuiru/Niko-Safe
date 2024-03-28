@@ -2,6 +2,8 @@ defmodule NikoSafeWeb.UssdController do
   alias NikoSafe.Communication.Sms
   alias NikoSafe.Communication.Ussd
   alias NikoSafe.Device.Impl
+  alias NikoSafe.User.Impl, as: User
+  
 
   use GenServer
   alias NikoSafe.CommunicationServer
@@ -70,9 +72,13 @@ defmodule NikoSafeWeb.UssdController do
       3 ->
         data = Ussd.extract_data_from_ussd(text)
 
+        
+        User.insert_to_db(%{name: data.name, phone_number: phoneNumber})
+        |> IO.inspect()
         # extract data -> check if the garget exists -> assign to the user and name it like that
         %{garget_id: device_unique_id, name: name} = data
         device_confirmation = Impl.give_device_a_name(device_unique_id, name)
+        IO.puts("this is the device confirm")
         IO.puts(device_confirmation)
         # this will send messages to your phone to show details
         # message_to_you = Sms.send_confirmation_message(phoneNumber, data)

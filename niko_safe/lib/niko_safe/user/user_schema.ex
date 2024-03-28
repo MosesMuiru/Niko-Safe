@@ -31,6 +31,6 @@ defmodule NikoSafe.User.UserSchema do
     user
     |> cast(params, all_fields() -- @optional_fields)
     |> validate_required(all_fields() -- @optional_fields)
-    |> validate_length(:phone_number, min: 10, max: 12)
+    |> validate_length(:phone_number, min: 10, max: 14)
   end
 end

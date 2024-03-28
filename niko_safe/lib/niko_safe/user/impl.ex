@@ -4,6 +4,8 @@ defmodule NikoSafe.User.Impl do
   alias Ecto.Changeset
   import Ecto.Query
 
+  alias NikoSafe.User.Users
+
   # get all users
   #
   @doc """
@@ -17,6 +19,22 @@ defmodule NikoSafe.User.Impl do
   """
   def get_all_users do
     Repo.all(UserSchema)
+  end
+
+  def get_all do
+
+    Repo.all(Users)
+  end
+
+  def by_id(id) do
+    Repo.get(Users)
+  end
+
+  def insert_to_db(user) do
+    user = Map.put(user, :unique_key, 1234)
+    %Users{}
+    |> Users.changeset(user)
+    |> Repo.insert()
   end
 
   # this will return the
