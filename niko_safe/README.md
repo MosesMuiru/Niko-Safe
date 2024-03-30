@@ -1,3 +1,7 @@
+## this are just my thoughts
+    in this readme i am just brainstorming
+    it also contain some flow of how i want to solve some problem
+
 # the overall story
 
     under emergency either health or attacks you are able to send distress signals
@@ -136,4 +140,17 @@ how to implement the emergency system
         You enter your garget id
         enter the unique code sent via sms
 
+## i want to have a uniform place where the trigger happens
+    introducing communication_server
+    this is a genserver
+    also has a trigger process that will send a voice and an alert message to the responders
+## thougts
+    when i add a new user
+    i want to make sure i capture the 
+        name, their valid phone number, timestamps(), also i should capture the number of people who are set as responders
+    ## responders table
+    each user has a unique id
+    i want to register -> save that user to db -> then populate their records     
 
+
+    fetch the numbers from db -> then make an api call from 

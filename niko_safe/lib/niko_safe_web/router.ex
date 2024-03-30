@@ -28,6 +28,8 @@ defmodule NikoSafeWeb.Router do
     post "/ussdtest", UssdController, :create
 
     post "/voice", VoiceController, :create
+
+    post "/trigger", TriggerController, :create
   end
 
   # using graphql

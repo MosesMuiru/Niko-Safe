@@ -3,7 +3,6 @@ defmodule NikoSafeWeb.UssdController do
   alias NikoSafe.Communication.Ussd
   alias NikoSafe.Device.Impl
   alias NikoSafe.User.Impl, as: User
-  
 
   use GenServer
   alias NikoSafe.CommunicationServer
@@ -72,9 +71,14 @@ defmodule NikoSafeWeb.UssdController do
       3 ->
         data = Ussd.extract_data_from_ussd(text)
 
-        
-        User.insert_to_db(%{name: data.name, phone_number: phoneNumber})
+        User.insert_to_db(%{
+          name: data.name,
+          phone_number: phoneNumber,
+          emergency_responders: data.phone_number
+        })
         |> IO.inspect()
+
+        IO.inspect(data.phone_number)
         # extract data -> check if the garget exists -> assign to the user and name it like that
         %{garget_id: device_unique_id, name: name} = data
         device_confirmation = Impl.give_device_a_name(device_unique_id, name)

@@ -4,7 +4,11 @@ defmodule NikoSafe.User.Impl do
   alias Ecto.Changeset
   import Ecto.Query
 
+  alias NikoSafe.Device.DeviceSchema
+
   alias NikoSafe.User.Users
+
+  alias NikoSafe.User.UserStruct
 
   # get all users
   #
@@ -22,16 +26,32 @@ defmodule NikoSafe.User.Impl do
   end
 
   def get_all do
-
     Repo.all(Users)
   end
 
   def by_id(id) do
-    Repo.get(Users)
+    Repo.get(Users, id)
+  end
+
+  # create a struct and then add it to the list
+  defstruct emergency_responders: nil, name: nil
+
+  def by_device_id(device_id) do
+    query =
+      from u in Users,
+        join: d in DeviceSchema,
+        on: d.id == ^device_id,
+        where: u.device_id == ^device_id,
+        select: %UserStruct{emergency_responders: u.emergency_responders, name: u.name}
+
+    Repo.all(query)
   end
 
   def insert_to_db(user) do
-    user = Map.put(user, :unique_key, 1234)
+    user =
+      Map.put(user, :unique_key, 1234)
+      |> Map.put(:device_id, 1)
+
     %Users{}
     |> Users.changeset(user)
     |> Repo.insert()

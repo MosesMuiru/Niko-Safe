@@ -13,6 +13,7 @@ defmodule NikoSafe.Communication.Voice do
   def make_call(phone_numbers) do
     attrs = %{username: "nikosafe", from: "+254711082048", to: phone_numbers}
 
-    Gateway.post_to_at(attrs, "voice")
+  {:ok, body} =  Gateway.post_to_at(attrs, "voice")
+    body
   end
 end

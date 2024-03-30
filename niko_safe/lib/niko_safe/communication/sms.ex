@@ -70,18 +70,13 @@ defmodule NikoSafe.Communication.Sms do
     0300323004
 
   """
+
   @spec send_confirmation_message(String.t(), map()) :: %{}
   def send_confirmation_message(phone_number, data) do
     message =
-      "Hello #{data.name}!!\nThis are your details\nDevice #{data.garget_id}\nPhone numbers #{data.phone_number}\nGarget_id\nYour access pin}"
+      "Hello #{data.name}!!\nThis are your details\nYour Device ID#{data.garget_id}\nPhone numbers #{data.phone_number}\nGarget_id\nYour access pin}"
 
     send_message(phone_number, message)
-  end
-
-  @spec send_alert(String.t()) :: %{}
-  def send_alert(phone_number) do
-    attr = %{username: "nikosafe", to: phone_number, message: "welcome to this home"}
-    post("", attr)
   end
 
   @spec send_confirmation_message_to_responders(%{phone_number: String.t()}) :: any()
