@@ -5,9 +5,5 @@ defmodule NikoSafeWeb.LocationController do
     conn
     |> put_status(:created)
     |> json(%{latitude: latitude, longitude: longitude})
-
   end
-
-
-
 end

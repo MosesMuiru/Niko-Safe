@@ -5,18 +5,24 @@ config :niko_safe, NikoSafe.Repo,
   username: "postgres",
   password: "welcome2",
   hostname: "localhost",
-  database: "niko_safe_dev",
+  database: "niko_safe",
   stacktrace: true,
+  port: "5432",
+  # ssl: true,
+  #  ssl_opts: [verify: :verify_peer, cacertfile: :public_key.cacerts_get()],
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+# configuration of africastlking credentialks
+
 # here am configuring africastalking api for this projects
-config :at_ax, 
-  api_key: "4917c40b2ed569a2f4690dae1a6027dc2a4c3a8107ff65def711816a3d7fd1cb",
+config :at_ex,
+  api_key: System.get_env("ATSANDBOX"),
   username: "sandbox",
   # When changed to "false" one will use the live endpoint url
-  sandbox: false,
-  stk_product_name: "AtEx", #Add your specific product name.
+  sandbox: true,
+  # Add your specific product name.
+  stk_product_name: "AtEx",
   b2c_product_name: "AtEx",
   b2b_product_name: "AtEx",
   bank_checkout_product_name: "AtEx",
@@ -32,7 +38,7 @@ config :at_ax,
 config :niko_safe, NikoSafeWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 5500],
+  http: [ip: {127, 0, 0, 1}, port: 5000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

@@ -6,7 +6,7 @@ defmodule NikoSafeWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {NikoSafeWeb.Layouts, :root}
-    #plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -26,9 +26,20 @@ defmodule NikoSafeWeb.Router do
     post "/", UserController, :create
     post "/location", LocationController, :create
     post "/ussdtest", UssdController, :create
+
+    post "/voice", VoiceController, :create
+
+    post "/trigger", TriggerController, :create
   end
-    
-    
+
+  # using graphql
+  scope "/gapi" do
+    pipe_through :api
+
+    forward "/api", Absinthe.Plug, schema: NikoSafeWeb.Schema
+
+    forward "/graphql", Absinthe.Plug.GraphiQL, schema: NikoSafeWeb.Schema
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", NikoSafeWeb do
