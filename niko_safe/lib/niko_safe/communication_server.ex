@@ -31,7 +31,7 @@ defmodule NikoSafe.CommunicationServer do
   # should be the 
   @spec trigger_for_help(pid(), map()) :: any()
   def trigger_for_help(pid, details) do
-    GenServer.call(pid, {:trigger_for_help, details}, 10000)
+    GenServer.call(pid, {:trigger_for_help, details}, 20000)
   end
 
   # server

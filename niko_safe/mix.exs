@@ -51,6 +51,7 @@ defmodule NikoSafe.MixProject do
        compile: false,
        depth: 1},
       {:swoosh, "~> 1.5"},
+      {:dataloader, "~> 1.0.0"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},

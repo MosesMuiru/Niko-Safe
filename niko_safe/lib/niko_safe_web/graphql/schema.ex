@@ -9,7 +9,7 @@ defmodule NikoSafeWeb.Schema do
   object :user do
     field :id, non_null(:integer)
     field :name, non_null(:string)
-    field :phone_number, non_null(:string)
+    field :phone_number, :string
   end
 
   object :device do
@@ -24,13 +24,21 @@ defmodule NikoSafeWeb.Schema do
   end
 
   # this discribes how to access the data or the node 
+  @desc "get all Users"
   query do
-    field :user, list_of(:user), description: "the list of available users" do
+    field :user, list_of(:user) do
       resolve(fn _, _, _ ->
         {:ok, Impl.get_all_users()}
       end)
-    end
+    end 
 
+    field :users, list_of(:user) do
+      resolve(fn _, _, _ -> 
+      
+        {:ok, Impl.get_all()}
+      end)
+
+    end
     # this will get the user by id
     field :get_user_by_id, :user do
       arg(:id, non_null(:integer))
@@ -41,7 +49,7 @@ defmodule NikoSafeWeb.Schema do
     end
 
     # this queries for device
-    field :get_all_devices, :device do
+    field :get_all_devices, list_of :device do
       resolve(fn _, _, _ ->
         {:ok, Device.get_all_devices()}
       end)
