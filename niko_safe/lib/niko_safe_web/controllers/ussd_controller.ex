@@ -140,16 +140,30 @@ defmodule NikoSafeWeb.UssdController do
       0 ->
         {_, response} = USSD.build_response("Enter your garget id", :cont)
 
-        conn
-        |> put_status(:accepted)
-        |> send_resp(200, response)
+        success(conn, response)
 
       1 ->
-        {_, response} = USSD.build_response("your details have been sent to your via sms", :end)
+        
+        {_, response} = USSD.build_response("Enter Your Pin")
+        success(conn, response)
 
-        conn
-        |> put_status(:ok)
-        |> send_resp(200, response)
+      2 ->
+
+        attr = Ussd.extract_data_for_login(text)
+
+        IO.inspect(attr)
+        case NikoSafe.Auth.auth(attr) do
+          true ->  
+            Sms.send_details
+            {:ok, response} = USSD.build_response("Your details have been forwaded to you", :end)
+            success(conn, response)
+          false ->
+            {_, response} = USSD.build_response("Wrong details. Please Try again")
+            failure(conn, response)
+          
+        end
+
+
 
       _ ->
         {_, response} = USSD.build_response("Check you details")
@@ -183,6 +197,18 @@ defmodule NikoSafeWeb.UssdController do
         |> put_status(:created)
         |> send_resp(200, response)
     end
+  end
+
+  defp success(conn, response) do
+    conn
+    |> put_status(:ok)
+    |> send_resp(200, response)
+  end
+
+  defp failure(conn, response) do
+    conn
+    |> put_status(404)
+    |> send_resp(404, response)
   end
 
   @spec count_level(String.t()) :: integer | String.t()

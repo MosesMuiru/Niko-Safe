@@ -36,4 +36,15 @@ defmodule NikoSafe.Communication.Ussd do
 
 
   """
+  def extract_data_for_login(ussd_data) do
+    data =
+      String.split(ussd_data, "*")
+      |> List.to_tuple()
+
+    %{
+      device_unique_id: String.to_integer(elem(data, 1)),
+      unique_key: String.to_integer(elem(data , 2))
+    }
+
+  end
 end

@@ -55,4 +55,36 @@ defmodule NikoSafeWeb.Schema do
       end)
     end
   end
+
+
+  @doc """
+    this is where the loading will take place
+    loading -> this is fetching the data in batches
+
+  """
+
+  def context(ctx) do
+
+    loader =
+      Dataloader.new
+      |> Dataloader.add_source(Impl, Impl.data())
+      |> Dataloader.add_source(Device, Device.data())
+    Map.put(ctx, :loader, loader)
+  end
+
+
+  @doc """
+    you must define the plugin to be used 
+
+  """
+
+  def plugins do
+
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+  end
+
+
+
+
+
 end

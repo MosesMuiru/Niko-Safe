@@ -1,10 +1,20 @@
 defmodule NikoSafe.Device.Impl do
+
+
+  defstruct device_name: nil, device_unique_id: nil
+
   alias NikoSafe.Device.DeviceSchema
   alias NikoSafe.User.UserSchema
   import Ecto.Changeset
 
   alias NikoSafe.Repo
   import Ecto.Query
+
+  def data() do
+    Dataloader.Ecto.new(NikoSafe.Repo, query: &query/2)
+  end
+
+  def query(queryable, _params), do: queryable
 
   def insert_device(device_name, unique_id) do
     DeviceSchema.changeset(%DeviceSchema{}, %{
@@ -23,11 +33,28 @@ defmodule NikoSafe.Device.Impl do
       from d in DeviceSchema,
         join: u in UserSchema,
         on: d.user_id == u.user_id,
-        select: [d.device_name, d.device_unique_id, u.name]
-
+        select: %Impl{
+        device_name: d.device_name,
+        device_unique_id: d.device_unique_id,
+        name: u.name
+    
+    }
     Repo.all(query)
   end
 
+  @spec get_device_by_id(integer) :: any()
+  def get_device_by_id(unique_id) do
+
+    query =
+      from d in DeviceSchema,
+      where: d.device_unique_id == ^unique_id,
+      select: %{
+        id: d.id,
+        device_unique_id: d.device_unique_id
+      }
+    Repo.one(query)
+
+  end
   # check if a device exists given its id
   def get_device_by_id!(unique_id) do
     query =

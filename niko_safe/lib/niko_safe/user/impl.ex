@@ -21,6 +21,18 @@ defmodule NikoSafe.User.Impl do
 
     delete
   """
+
+  def data() do
+    Dataloader.Ecto.new(NikoSafe.Repo, query: &query/2)
+  end
+
+
+  @doc """
+
+    the following function will run like the rule for using the dataloader
+  """
+  def query(queryable, _params), do: queryable
+
   def get_all_users do
     Repo.all(UserSchema)
   end
@@ -30,7 +42,15 @@ defmodule NikoSafe.User.Impl do
   end
 
   def by_id(id) do
+
     Repo.get(Users, id)
+  end
+  def by_unique_id(id) do
+    query = from u in Users,
+      where: u.unique_key == ^id,
+      select: %{id: u.id, device_id: u.device_id}
+
+    Repo.one(query)
   end
 
   # create a struct and then add it to the list

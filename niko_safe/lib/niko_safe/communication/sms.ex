@@ -1,4 +1,5 @@
 defmodule NikoSafe.Communication.Sms do
+  alias NikoSafe.User.Impl
   @moduledoc """
 
   I THE SMS WILL HAPPEN
@@ -93,10 +94,12 @@ defmodule NikoSafe.Communication.Sms do
   end
 
   # sending details to user
-  @spec send_details(String.t()) :: any()
-  def send_details(phone_number) do
-    message = "this are the details"
-    send_message(phone_number, message)
+  def send_details do
+    respo = Impl.by_id(1)
+    message = "Emegency Responders: #{respo.emergency_responders}"
+    send_message(respo.phone_number, message)
+    
+
   end
 
   @spec send_message(String.t(), String.t()) :: map()
