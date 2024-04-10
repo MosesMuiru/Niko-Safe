@@ -9,11 +9,14 @@ defmodule NikoSafeWeb.TriggerController do
     # reques the name of user from db based the garget id
     # send the details to the genserver to trigger the call
 
+    IO.inspect(device_id)
     response =  fetch_details(device_id)
 
+
+    IO.inspect(response)
     conn
     |> put_status(response.sms)
-    |> send_resp(response.voice, "voice sent")
+    |> send_resp(200, "voice sent")
 
   end
 

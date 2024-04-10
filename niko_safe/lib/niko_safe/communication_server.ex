@@ -66,13 +66,13 @@ defmodule NikoSafe.CommunicationServer do
 
   # this if the function containing the trigger 
   def trigger(details) do
-    voice = Voice.make_call(details.emergency_responders)
+   #_voice = Voice.make_call(details.emergency_responders)
 
     sms =
       Sms.send_message(details.emergency_responders, " #{details.name} has an emergency. PLEASE HELP!!")
 
-    IO.inspect(voice.status)
+    #IO.inspect(voice.status)
     IO.inspect(sms)
-    %{voice: voice.status, sms: sms}
+    %{sms: sms}
   end
 end
