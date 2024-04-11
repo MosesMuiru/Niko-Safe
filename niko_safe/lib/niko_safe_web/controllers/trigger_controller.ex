@@ -16,7 +16,7 @@ defmodule NikoSafeWeb.TriggerController do
     IO.inspect(response)
     conn
     |> put_status(response.sms)
-    |> send_resp(200, "voice sent")
+    |> send_resp(200, " emergency call made")
 
   end
 
